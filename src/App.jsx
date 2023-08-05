@@ -13,9 +13,9 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    fetchProductData();
-  }, []);
+  // useEffect(() => {
+  // fetchProductData();
+  // }, []);
 
   return (
     <div>
