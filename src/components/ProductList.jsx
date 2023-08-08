@@ -24,13 +24,13 @@ const ProductList = () => {
     }, []);
 
     if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error while loading items: {error.message}</p>; // Use error.message
+    if (error) return <p>Error while loading items: {error.message}</p>;
 
     return (
-        <div className="p-4">
-            <h2 className="text-2xl">Products</h2>
+        <div className="p-4 bg-gray-100">
+            <h2 className="text-2xl ">Products</h2>
             <ul className="flex justify-between text-center">
-                {products.map(product => (
+                {products.map((product) => (
                     <ProductItem key={product.id} product={product} />
                 ))}
             </ul>
