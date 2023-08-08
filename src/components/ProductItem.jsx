@@ -1,12 +1,21 @@
-import React from "react"
+import React from "react";
+import PropTypes from "prop-types";
 
-
-const ProductItem = () => {
-    return (
-        <div>
-            <h1>i am the ProductItem component</h1>
+const ProductItem = ({ product }) => (
+    <li className="" key={product.id}>
+        <div className="w-full  grid place-items-center">
+            <img className="h-32" src={product.image} alt={product.title} />
         </div>
-    )
-}
+        <p>{product.title}</p>
+    </li>
+);
 
-export default ProductItem
+ProductItem.propTypes = {
+    product: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired,
+    }).isRequired,
+};
+
+export default ProductItem;
