@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-const ProductDetails = () => {
+const ProductDetails = ({ addToCart }) => {
     const { productId } = useParams();
     const [product, setProduct] = useState(null);
     const [selectedSize, setSelectedSize] = useState("");
@@ -30,7 +30,10 @@ const ProductDetails = () => {
     };
 
     const handleAddToCart = () => {
-        alert("Added to cart")
+        if (selectedSize && quantity > 0) {
+            addToCart(product, selectedSize, quantity)
+            alert("added to cart")
+        }
     };
 
     if (!product) {
