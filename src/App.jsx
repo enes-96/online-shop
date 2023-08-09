@@ -1,19 +1,20 @@
-// App.js
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./components/common/Header";
+import Home from "./components/Pages/Home";
+import ProductList from "./components/Pages/ProductList";
+import ProductDetails from "./components/Product/ProductDetail";
+import Cart from "./components/Pages/Cart";
+import Checkout from "./components/Pages/Checkout";
+import useLocalStorage from "./components/hooks/useLocalStorage";
 
-import Header from "./components/Header";
-import Home from "./components/Home";
-import ProductList from "./components/ProductList";
-import Cart from "./components/Cart";
-import ProductDetails from "./components/ProductDetail";
 
 function App() {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useLocalStorage("cartItems", []);
 
   const addToCart = (product, selectedSize, quantity) => {
-    // Add the selected product to the cartItems state with the selected size and quantity
     const newCartItem = {
+      img: product.image,
       id: product.id,
       name: product.title,
       price: product.price,
@@ -21,6 +22,7 @@ function App() {
       size: selectedSize,
     };
     setCartItems([...cartItems, newCartItem]);
+
   };
 
   const updateQuantity = (itemId, newQuantity) => {
@@ -52,11 +54,12 @@ function App() {
               />
             }
           />
-          {/* Pass addToCart function to ProductDetails */}
           <Route
             path="/products/:productId"
             element={<ProductDetails addToCart={addToCart} />}
           />
+          <Route path="/checkout" element={<Checkout />} />
+
         </Routes>
       </div>
     </Router>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import PropTypes from "prop-types"
 
 const ProductDetails = ({ addToCart }) => {
     const { productId } = useParams();
@@ -50,6 +51,8 @@ const ProductDetails = ({ addToCart }) => {
                     <img className="h-36  mb-4" src={product.image} alt={product.title} />
                 </div>
                 <div className="mb-4">
+                    <p className="py-2 text-xl">{product.price} $</p>
+
                     <label htmlFor="size" className="block font-medium mb-2">Select Size:</label>
                     <select id="size" className="border p-2 w-full" value={selectedSize} onChange={handleSizeChange}>
                         <option value="">Select</option>
@@ -73,5 +76,10 @@ const ProductDetails = ({ addToCart }) => {
         </div>
     );
 };
+
+ProductDetails.propTypes = {
+    addToCart: PropTypes.func.isRequired
+};
+
 
 export default ProductDetails;
