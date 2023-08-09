@@ -1,19 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+
+// Calculate total price of items in the cart
+export const calculateTotal = (cartItems) => {
+    const total = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+    const dollarFormat = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD"
+    });
+    return dollarFormat.format(total); // Note the .format() method
+};
 
 const Cart = ({ cartItems, updateQuantity, removeItem }) => {
-    // Calculate total price of items in the cart
-    const calculateTotal = () => {
-        const total = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
-        const dollarFormat = new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: "USD"
-        });
-        return dollarFormat.format(total); // Note the .format() method
-    };
-
     return (
-        <div className="p-4 bg-gray-100">
+        <div className="p-4 bg-gray-100 h-screen">
             <h1 className="text-2xl font-bold mb-4">Cart</h1>
             <ul className="space-y-4">
                 {cartItems.map((item) => (
@@ -36,10 +37,10 @@ const Cart = ({ cartItems, updateQuantity, removeItem }) => {
                     </li>
                 ))}
             </ul>
-            <p className="mt-4 text-xl font-bold">Total:  {calculateTotal()}</p>
-
+            <p className="mt-4 text-xl font-bold">Total:  {calculateTotal(cartItems)}</p>
+            <p></p>
+            <Link to="/checkout" className="bg-blue-400 py-1 px-4 text-white text-2xl">Checkout </Link>
         </div>
-
     );
 };
 

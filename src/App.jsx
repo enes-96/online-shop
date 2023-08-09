@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/common/Header";
+import Footer from "./components/common/Footer";
 import Home from "./components/Pages/Home";
 import ProductList from "./components/Pages/ProductList";
 import ProductDetails from "./components/Product/ProductDetail";
@@ -61,6 +62,7 @@ function App() {
           <Route path="/checkout" element={<Checkout checkoutItems={cartItems} />} />
 
         </Routes>
+        <Footer />
       </div>
     </Router>
   );
