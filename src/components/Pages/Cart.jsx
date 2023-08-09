@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 
 const Cart = ({ cartItems, updateQuantity, removeItem }) => {
     // Calculate total price of items in the cart
@@ -38,7 +37,6 @@ const Cart = ({ cartItems, updateQuantity, removeItem }) => {
                 ))}
             </ul>
             <p className="mt-4 text-xl font-bold">Total:  {calculateTotal()}</p>
-            <Link to={{ pathname: "/checkout", state: { total: calculateTotal() } }}>Checkout</Link>
 
         </div>
 
