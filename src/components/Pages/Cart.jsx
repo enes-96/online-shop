@@ -14,7 +14,7 @@ export const calculateTotal = (cartItems) => {
 
 const Cart = ({ cartItems, updateQuantity, removeItem }) => {
     return (
-        <div className="p-4 bg-gray-100 h-screen">
+        <div className="p-4 bg-gray-100 h-screen col-start-2 col-span-full">
             <h1 className="text-2xl font-bold mb-4">Cart</h1>
             <ul className="space-y-4">
                 {cartItems.map((item) => (

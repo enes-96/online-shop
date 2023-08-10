@@ -9,7 +9,7 @@ const Checkout = ({ checkoutItems }) => {
     console.log(total)
 
     return (
-        <div className="h-screen">
+        <div className="h-screen col-start-2 col-span-full">
             <h1>Checkout</h1>
             <div>
 

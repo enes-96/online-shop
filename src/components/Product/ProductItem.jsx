@@ -6,10 +6,13 @@ import { Link } from "react-router-dom";
 const ProductItem = ({ product }) => (
     <li className="bg-white p-4 h-60 w-60" key={product.id}>
         <Link to={`/products/${product.id}`} className="text-blue-500">
-            <div className="w-full grid place-items-center m-2">
-                <img className="h-32" src={product.image} alt={product.title} />
+            <div className="w-full grid place-items-center">
+                <img className="m-2" src={product.image} alt={product.title} />
             </div>
-            <p>{product.title}</p>
+            <div className="my-2">
+                <p className="text-black text-sm text-left">{product.title}</p>
+                <p className="text-slate-600 text-sm text-left">{product.price}</p>
+            </div>
         </Link>
     </li>
 );

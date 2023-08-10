@@ -1,15 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const Home = () => {
     return (
-        <div id="heroBg" className="h-screen flex flex-col justify-center items-center p-8 text-white">
-            <h1 className="text-3xl mb-4">Men Clothing Essentials!</h1>
-            <div className="mt-4">
-                <Link className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-lg" to="/products">
-                    Buy Them!
-                </Link>
-            </div>
+        <div id="heroBg" className="col-start-2 col-span-full row-start-1 row-end-3 h-screen grid place-items-center ">
+            <p className="text-stone-50 leading-loose tracking-wide  drop-shadow-2xl text-xl text-center w-2/4">In every aspect of our business, whether it’s the big picture or the smallest detail, we try to achieve the extraordinary. A perfectly basic collection of high quality pieces at sensible prices, an independent distribution straight from the source and simplified shopping as simple as shopping should be. This is No Label.</p>
         </div>
     );
 };

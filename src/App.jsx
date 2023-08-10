@@ -13,13 +13,12 @@ import useLocalStorage from "./components/hooks/useLocalStorage";
 function App() {
   const [cartItems, setCartItems] = useLocalStorage("cartItems", []);
 
-  const addToCart = (product, selectedSize, quantity) => {
+  const addToCart = (product, selectedSize,) => {
     const newCartItem = {
       img: product.image,
       id: product.id,
       name: product.title,
       price: product.price,
-      quantity,
       size: selectedSize,
     };
     setCartItems([...cartItems, newCartItem]);
@@ -40,7 +39,7 @@ function App() {
 
   return (
     <Router>
-      <div>
+      <div className="h-screen grid grid-cols-12 grid-rows-12 ">
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -60,11 +59,10 @@ function App() {
             element={<ProductDetails addToCart={addToCart} />}
           />
           <Route path="/checkout" element={<Checkout checkoutItems={cartItems} />} />
-
         </Routes>
         <Footer />
-      </div>
-    </Router>
+      </div >
+    </Router >
   );
 }
 

@@ -28,8 +28,8 @@ const ProductList = () => {
     if (error) return <p>Error while loading items: {error.message}</p>;
 
     return (
-        <div className="p-4 bg-gray-100 h-screen">
-            <h2 className="text-2xl ">Products</h2>
+        <div className="p-4 h-screen col-start-2 col-span-full">
+            <p>products</p>
             <ul className="flex justify-between text-center">
                 {products.map((product) => (
                     <ProductItem key={product.id} product={product} />

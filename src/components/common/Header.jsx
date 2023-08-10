@@ -3,13 +3,10 @@ import { Link, } from "react-router-dom"
 
 const Header = () => {
     return (
-        <div className="p-4 bg-slate-200">
-            <nav className="flex items-center justify-between p-4">
-                <img src="/src/images/veloIcon.png" className="h-12 w-12" alt="website-logo" />
-                <ul className="flex items-center gap-12">
-                    <li>
-                        <Link to="/">Home</Link>
-                    </li>
+        <div className="col-start-1 col-end-2 row-start-1 row-end-3 ">
+            <nav className="flex flex-col p-4  h-full gap-12 items-center">
+                <Link to="/">    <img src="/src/images/logo.png" className="" alt="website-logo" /></Link>
+                <ul className="flex flex-col gap-12 items-center">
                     <li>
                         <Link to="/products">Products</Link>
                     </li>
