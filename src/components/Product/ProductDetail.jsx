@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types"
 import productsData from "/src/data/products.json"
-
+import { Link } from "react-router-dom";
 
 const ProductDetails = ({ addToCart }) => {
     const { productId } = useParams();
     const [product, setProduct] = useState(null);
-    const [selectedSize, setSelectedSize] = useState("");
-    const [quantity, setQuantity] = useState(1);
+    const [selectedSize, setSelectedSize] = useState("s");
+    const [showMassage, setShowMassage] = useState(false)
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -29,10 +29,13 @@ const ProductDetails = ({ addToCart }) => {
     };
 
     const handleAddToCart = () => {
-        if (selectedSize && quantity > 0) {
-            addToCart(product, selectedSize)
-            alert("added to cart")
-        }
+        addToCart(product, selectedSize)
+        setShowMassage(true)
+        setTimeout(() => {
+            setShowMassage(false)
+        }, 2000);
+
+
     };
 
     if (!product) {
@@ -42,30 +45,48 @@ const ProductDetails = ({ addToCart }) => {
     const sizes = ["s", "m", "l", "xl"];
 
     return (
-        <div className="p-4 h-screen col-start-2 col-end-13 grid grid-cols-2">
+        <div className="p-4  col-start-2 col-end-13 grid grid-cols-2">
             < div className="flex justify-center items-center" >
                 <img className="h-96" src={product.image} alt={product.title} />
             </div >
-            <div className="mb-4 col-start-2  border-2">
-                <div>
-                    <p>{product.title}</p>
-                    <p className="py-2 text-xl">{product.price} $</p>
-                    <div className="flex justify-between ">
+            <div className="mb-4 col-start-2">
+                <div className="">
+                    <div className="border-b my-10 flex flex-col gap-4 py-10">
+                        <p className="">{product.title}</p>
+                        <p className="py-2  text-xl">{product.price} $</p>
+                    </div>
+                    <div className="flex justify-between my-10">
                         {sizes.map((size, index) => (
                             <div onClick={() => handleSizeChange(size)} key={index} className={`h-10 w-10 text-md grid place-items-center ${selectedSize === size ? "bg-gray-50" : ""
                                 }`} > {size}</div>
                         ))}
                     </div>
-                    <div className="mb-4">
-                    </div>
                     <button
-                        className="bg-blue-500 text-white py-2 px-4 rounded-lg w-full hover:bg-blue-600"
+                        className="border border-black hover:bg-black hover:text-white transition-all  py-2 px-12 my-4"
                         onClick={handleAddToCart}
-                        disabled={!selectedSize || quantity <= 0}
                     >
                         Add to Cart
                     </button>
-
+                    {showMassage && <p className="text-green-400 absolute ">added</p>}
+                    <ul className="text-sm flex flex-col gap-4 mt-10 border-y py-10">
+                        {product.details.map((point, key) => (
+                            <li className="" key={key}>{point}</li>
+                        ))}
+                    </ul>
+                    <ul className="text-sm flex flex-col gap-4 border-b  py-10">
+                        <li>
+                            <p className=" font-bold" >Fit</p>
+                            <p>This is a regular fit T-shirt. So you can stick to your regular size.</p>
+                        </li>
+                        <li>
+                            <p className="font-bold">  Quality</p>
+                            <p>100% Organic cotton in a midweight quality equals a soft and <br /> comfortable feel. Weight: 230 gsm Cotton.</p>
+                        </li>
+                        <li>
+                            <p className=" font-bold" >How to wear</p>
+                            <p>This Tee goes perfectly on its own or <br /> together with a jacket or (denim) shirt. Mix <br /> it up with any type of trouser and you’re good to go.</p>
+                        </li>
+                    </ul>
                 </div >
             </div>
         </div >

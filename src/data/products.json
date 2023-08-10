@@ -6,7 +6,13 @@
     "description": "A high-quality, soft cotton t-shirt in classic white.",
     "image": " /src/images/productImg/white-tshirt.png",
     "category": "t-shirt",
-    "gender": "unisex"
+    "gender": "unisex",
+    "details": [
+      "Regular Fit",
+      "Organic Cotton",
+      "Gray",
+      "This product can be machine washed at 30C°"
+    ]
   },
   {
     "id": 2,
@@ -15,15 +21,27 @@
     "description": "A high-quality, soft cotton t-shirt in classic black.",
     "image": "/src/images/productImg/black-tshirt.png",
     "category": "t-shirt",
-    "gender": "unisex"
+    "gender": "unisex",
+    "details": [
+      "Regular Fit",
+      "Organic Cotton",
+      "Gray",
+      "This product can be machine washed at 30C°"
+    ]
   },
   {
     "id": 3,
-    "title": "Classic Black T-Shirt",
+    "title": "Classic Gray T-Shirt",
     "price": 29.99,
     "description": "A high-quality, soft cotton t-shirt in classic black.",
     "image": "/src/images/productImg/gray-tshirt.png",
     "category": "t-shirt",
-    "gender": "unisex"
+    "gender": "unisex",
+    "details": [
+      "Regular Fit",
+      "Organic Cotton",
+      "Gray",
+      "This product can be machine washed at 30C°"
+    ]
   }
 ]

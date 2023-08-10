@@ -3,10 +3,8 @@ import PropTypes from "prop-types"
 import { calculateTotal } from "./Cart";
 
 const Checkout = ({ checkoutItems }) => {
-    console.log(checkoutItems);
 
     const total = calculateTotal(checkoutItems)
-    console.log(total)
 
     return (
         <div className="h-screen col-start-2 col-span-full">
@@ -50,7 +48,7 @@ const Checkout = ({ checkoutItems }) => {
                 </form>
 
             </div>
-            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <ul className=" ">
                 {checkoutItems.map((item, index) => (
                     <li key={index} className="border rounded-lg p-4 shadow-md">
                         <div className="flex items-center">

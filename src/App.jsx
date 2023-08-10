@@ -13,11 +13,12 @@ import useLocalStorage from "./components/hooks/useLocalStorage";
 function App() {
   const [cartItems, setCartItems] = useLocalStorage("cartItems", []);
 
-  const addToCart = (product, selectedSize,) => {
+  const addToCart = (product, selectedSize) => {
     const newCartItem = {
       img: product.image,
       id: product.id,
       name: product.title,
+      quantity: 1,
       price: product.price,
       size: selectedSize,
     };

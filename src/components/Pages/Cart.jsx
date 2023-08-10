@@ -13,9 +13,13 @@ export const calculateTotal = (cartItems) => {
 };
 
 const Cart = ({ cartItems, updateQuantity, removeItem }) => {
+    console.log(updateQuantity)
     return (
-        <div className="p-4 bg-gray-100 h-screen col-start-2 col-span-full">
+        <div className="p-4 h-screen col-start-2 col-span-full ">
             <h1 className="text-2xl font-bold mb-4">Cart</h1>
+            <Link to="/checkout" className="bg-blue-400 py-1 px-4 text-white text-2xl">Checkout </Link>
+            <p className="mt-4 text-xl font-bold">Total:  {calculateTotal(cartItems)}</p>
+
             <ul className="space-y-4">
                 {cartItems.map((item) => (
                     <li key={item.id} className="flex items-center justify-between border-b pb-2">
@@ -37,9 +41,7 @@ const Cart = ({ cartItems, updateQuantity, removeItem }) => {
                     </li>
                 ))}
             </ul>
-            <p className="mt-4 text-xl font-bold">Total:  {calculateTotal(cartItems)}</p>
             <p></p>
-            <Link to="/checkout" className="bg-blue-400 py-1 px-4 text-white text-2xl">Checkout </Link>
         </div>
     );
 };
