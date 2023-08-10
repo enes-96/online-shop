@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types"
+import productsData from "/src/data/products.json"
+
 
 const ProductDetails = ({ addToCart }) => {
     const { productId } = useParams();
@@ -11,8 +13,7 @@ const ProductDetails = ({ addToCart }) => {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const response = await fetch(`https://fakestoreapi.com/products/${productId}`);
-                const data = await response.json();
+                const data = productsData.find(product => product.id === parseInt(productId));
                 setProduct(data);
             } catch (error) {
                 console.error("Error fetching product:", error);
@@ -21,6 +22,7 @@ const ProductDetails = ({ addToCart }) => {
 
         fetchProduct();
     }, [productId]);
+
 
     const handleSizeChange = (event) => {
         setSelectedSize(event.target.value);

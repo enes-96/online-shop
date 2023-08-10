@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchProducts } from "../../utils/api";
+import productsData from "/src/data/products.json"
 import ProductItem from "../Product/ProductItem";
 
 const ProductList = () => {
@@ -10,7 +10,7 @@ const ProductList = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const data = await fetchProducts();
+                const data = await productsData;
                 setProducts(data);
                 setLoading(false);
             } catch (error) {
@@ -22,6 +22,7 @@ const ProductList = () => {
 
         fetchData();
     }, []);
+    console.log(products)
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error while loading items: {error.message}</p>;
