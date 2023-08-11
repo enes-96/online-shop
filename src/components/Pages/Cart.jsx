@@ -15,7 +15,7 @@ export const calculateTotal = (cartItems) => {
 const Cart = ({ cartItems, updateQuantity, removeItem }) => {
     console.log(updateQuantity)
     return (
-        <div className="p-4 h-screen col-start-2 col-span-full ">
+        <div className="p-4 min-h-screen col-start-2 col-span-full ">
             <h1 className="text-2xl font-bold mb-4">Cart</h1>
             <Link to="/checkout" className="bg-blue-400 py-1 px-4 text-white text-2xl">Checkout </Link>
             <p className="mt-4 text-xl font-bold">Total:  {calculateTotal(cartItems)}</p>
@@ -26,6 +26,7 @@ const Cart = ({ cartItems, updateQuantity, removeItem }) => {
                         <img src={item.img} className="h-20" alt="" />
                         <span className="font-medium">{item.name}</span>
                         <span className="font-medium">${item.price}</span>
+                        <span>{item.size}</span>
                         <input
                             type="number"
                             value={item.quantity}
