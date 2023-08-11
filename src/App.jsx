@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/common/Header";
 import Footer from "./components/common/Footer";
@@ -11,7 +11,9 @@ import useLocalStorage from "./components/hooks/useLocalStorage";
 
 
 function App() {
-  const [cartItems, setCartItems] = useLocalStorage("cartItems", []);
+  const [cartItems, setCartItems] = useLocalStorage("cartItems", []); // Initialize with an empty array
+
+
 
   const addToCart = (product, selectedSize) => {
     const newCartItem = {
