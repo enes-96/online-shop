@@ -70,10 +70,11 @@ Checkout.propTypes = {
     checkoutItems: PropTypes.arrayOf(
         PropTypes.shape({
             name: PropTypes.string.isRequired,
-            image: PropTypes.string.isRequired,
+            img: PropTypes.string.isRequired,
             price: PropTypes.number.isRequired,
         })
     ).isRequired,
 };
+
 
 export default Checkout;

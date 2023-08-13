@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-// Calculate total price of items in the cart
 export const calculateTotal = (cartItems) => {
     const total = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
     const dollarFormat = new Intl.NumberFormat("en-US", {
@@ -13,7 +12,7 @@ export const calculateTotal = (cartItems) => {
 };
 
 const Cart = ({ cartItems, updateQuantity, removeItem }) => {
-    console.log(updateQuantity)
+    console.log(cartItems)
     return (
         <div className="p-4 min-h-screen col-start-2 col-span-full ">
             <h1 className="text-2xl font-bold mb-4">Cart</h1>
@@ -21,8 +20,8 @@ const Cart = ({ cartItems, updateQuantity, removeItem }) => {
             <p className="mt-4 text-xl font-bold">Total:  {calculateTotal(cartItems)}</p>
 
             <ul className="space-y-4">
-                {cartItems.map((item) => (
-                    <li key={item.id} className="flex items-center justify-between border-b pb-2">
+                {cartItems.map((item, key) => (
+                    <li key={key} className="flex items-center justify-between border-b pb-2">
                         <img src={item.img} className="h-20" alt="" />
                         <span className="font-medium">{item.name}</span>
                         <span className="font-medium">${item.price}</span>
