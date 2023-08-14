@@ -6,22 +6,23 @@ export const calculateTotal = (cartItems) => {
     const total = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
     const dollarFormat = new Intl.NumberFormat("en-US", {
         style: "currency",
-        currency: "USD"
+        currency: "USD",
     });
     return dollarFormat.format(total); // Note the .format() method
 };
 
 const Cart = ({ cartItems, updateQuantity, removeItem }) => {
-    console.log(cartItems)
     return (
         <div className="p-4 min-h-screen col-start-2 col-span-full ">
             <h1 className="text-2xl font-bold mb-4">Cart</h1>
-            <Link to="/checkout" className="bg-blue-400 py-1 px-4 text-white text-2xl">Checkout </Link>
-            <p className="mt-4 text-xl font-bold">Total:  {calculateTotal(cartItems)}</p>
+            <Link to="/checkout" className="bg-blue-400 py-1 px-4 text-white text-2xl">
+                Checkout
+            </Link>
+            <p className="mt-4 text-xl font-bold">Total: {calculateTotal(cartItems)}</p>
 
             <ul className="space-y-4">
-                {cartItems.map((item, key) => (
-                    <li key={key} className="flex items-center justify-between border-b pb-2">
+                {cartItems.map((item, index) => (
+                    <li key={index} className="flex items-center justify-between border-b pb-2">
                         <img src={item.img} className="h-20" alt="" />
                         <span className="font-medium">{item.name}</span>
                         <span className="font-medium">${item.price}</span>
@@ -29,11 +30,11 @@ const Cart = ({ cartItems, updateQuantity, removeItem }) => {
                         <input
                             type="number"
                             value={item.quantity}
-                            onChange={(e) => updateQuantity(item.id, e.target.value)}
+                            onChange={(e) => updateQuantity(item.uniqueId, e.target.value)}
                             className="w-16 p-1 border rounded"
                         />
                         <button
-                            onClick={() => removeItem(item.id)}
+                            onClick={() => removeItem(item.uniqueId)}
                             className="px-3 py-1 bg-red-500 text-white rounded"
                         >
                             Remove
@@ -41,7 +42,6 @@ const Cart = ({ cartItems, updateQuantity, removeItem }) => {
                     </li>
                 ))}
             </ul>
-            <p></p>
         </div>
     );
 };

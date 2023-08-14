@@ -9,34 +9,44 @@ import Cart from "./components/Pages/Cart";
 import Checkout from "./components/Pages/Checkout";
 import useLocalStorage from "./components/hooks/useLocalStorage";
 
-
 function App() {
-  const [cartItems, setCartItems] = useLocalStorage("cartItems", []); // Initialize with an empty array
-
-
+  const [cartItems, setCartItems] = useLocalStorage("cartItems", []);
 
   const addToCart = (product, selectedSize) => {
-    const newCartItem = {
-      img: product.image,
-      id: product.id,
-      name: product.title,
-      quantity: 1,
-      price: product.price,
-      size: selectedSize,
-    };
-    setCartItems([...cartItems, newCartItem]);
+    const existingCartItem = cartItems.find(
+      (item) => item.uniqueId === `${product.id}-${selectedSize}`
+    );
 
+    if (existingCartItem) {
+      const updatedCart = cartItems.map((item) =>
+        item.uniqueId === existingCartItem.uniqueId
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+      setCartItems(updatedCart);
+    } else {
+      const newCartItem = {
+        img: product.image,
+        id: product.id,
+        name: product.title,
+        quantity: 1,
+        price: product.price,
+        size: selectedSize,
+        uniqueId: `${product.id}-${selectedSize}`
+      };
+      setCartItems([...cartItems, newCartItem]);
+    }
   };
 
-  const updateQuantity = (itemId, newQuantity) => {
+  const updateQuantity = (uniqueId, newQuantity) => {
     const updatedCart = cartItems.map((item) =>
-      item.id === itemId ? { ...item, quantity: newQuantity } : item
+      item.uniqueId === uniqueId ? { ...item, quantity: newQuantity } : item
     );
     setCartItems(updatedCart);
   };
 
-  const removeItem = (itemId) => {
-    const updatedCart = cartItems.filter((item) => item.id !== itemId);
+  const removeItem = (uniqueId) => {
+    const updatedCart = cartItems.filter((item) => item.uniqueId !== uniqueId);
     setCartItems(updatedCart);
   };
 
@@ -64,8 +74,8 @@ function App() {
           <Route path="/checkout" element={<Checkout checkoutItems={cartItems} />} />
         </Routes>
         <Footer />
-      </div >
-    </Router >
+      </div>
+    </Router>
   );
 }
 
