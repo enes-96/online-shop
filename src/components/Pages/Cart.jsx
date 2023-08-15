@@ -31,7 +31,7 @@ const Cart = ({ cartItems, updateQuantity, removeItem }) => {
                             type="number"
                             value={item.quantity}
                             onChange={(e) => updateQuantity(item.uniqueId, e.target.value)}
-                            className="w-16 p-1 border rounded"
+                            className="w-10 h-10 text-center p-1 border rounded "
                         />
                         <button
                             onClick={() => removeItem(item.uniqueId)}
