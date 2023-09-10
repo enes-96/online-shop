@@ -6,7 +6,7 @@ import productsData from "/src/data/products.json";
 const ProductDetails = ({ addToCart }) => {
     const { productId } = useParams();
     const [product, setProduct] = useState(null);
-    const [selectedSize, setSelectedSize] = useState("s");
+    const [selectedSize, setSelectedSize] = useState("");
     const [showMessage, setShowMessage] = useState(false);
 
     useEffect(() => {
@@ -58,7 +58,7 @@ const ProductDetails = ({ addToCart }) => {
                             <div
                                 key={size}
                                 onClick={() => handleSizeChange(size)}
-                                className={`h-10 w-10 text-md grid place-items-center ${selectedSize === size ? "bg-gray-50" : ""
+                                className={`h-10 w-10 text-md grid place-items-center cursor-pointer ${selectedSize === size ? "bg-gray-50" : ""
                                     }`}
                             >
                                 {size}
@@ -66,7 +66,7 @@ const ProductDetails = ({ addToCart }) => {
                         ))}
                     </div>
                     <button
-                        className="border border-black hover:bg-black hover:text-white transition-all py-2 px-12 my-4"
+                        className={`border border-black hover:bg-black hover:text-white transition-all py-2 px-12 my-4 ${selectedSize === "" ? "opacity-50 cursor-not-allowed pointer-events-none" : ""}`}
                         onClick={handleAddToCart}
                     >
                         Add to Cart
@@ -74,7 +74,7 @@ const ProductDetails = ({ addToCart }) => {
                     {showMessage && <p className="text-green-400 absolute">Added</p>}
                     <ul className="text-sm flex flex-col gap-4 mt-10 border-y py-10">
                         {product.details.map((point, key) => (
-                            <li key={key}>{point}</li>
+                            <li className="" key={key}>{point}</li>
                         ))}
                     </ul>
                     <ul className="text-sm flex flex-col gap-4 border-b py-10">
