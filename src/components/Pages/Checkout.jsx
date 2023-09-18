@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const Checkout = ({ checkoutItems }) => {
     const [selectedCountry, setSelectedCountry] = useState("");
-    const [textColor, setTextColor] = useState("text-gray-400")
+    const [textColor, setTextColor] = useState("text-gray-500")
 
 
     const handleCountryChange = (country) => {
@@ -82,7 +82,12 @@ const Checkout = ({ checkoutItems }) => {
                                 <img className="w-20 h-20 mr-4" src={item.img} alt={item.name} />
                                 <div>
                                     <h3 className="text-sm font-semibold">{item.name}</h3>
-                                    <p>{item.size}</p>
+                                    <div className="flex gap-12">
+                                        <p>{item.size}</p>
+                                        <p>amount:{item.quantity}</p>
+
+                                    </div>
+
                                 </div>
                                 <p className="text-gray-600"> ${item.price.toFixed(2)}</p>
 
